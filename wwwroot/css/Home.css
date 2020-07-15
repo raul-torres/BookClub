@@ -1,0 +1,94 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../img/home.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+.container{
+    color: white;
+}
+.navbar{
+    margin-bottom: 5%;
+}
+.thisCard{
+    display: inline-block;
+    min-width: 202px;
+    max-width: 202px;
+    border-radius: 5px;
+    margin-right: 7%;
+    margin-bottom: 5%;
+    padding: 2%;
+    position: relative;
+    min-height: 339px;
+    max-height: 339px;
+
+    /* Makes boxes parallel */
+    overflow-y: auto;
+    
+    /* Controlling book cover look */
+    background: url('../img/cover.jpg'), no-repeat;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.like{
+    bottom: 14px;
+    position: absolute;
+    right: 10%;
+    margin-top: 10%;
+    text-decoration: none;
+    transition: 0.5s;
+    color: lightblue;
+    background-color: transparent;
+    border: none;
+}
+    .like:hover{
+        color: lightyellow;
+    }
+.allLikes{
+    bottom: 0;
+    position: absolute;
+    left: 5%;
+}
+.author{
+    margin-top: 12% !important;
+    color: white;
+
+}
+.title{
+    font-size: large;
+    color: white;
+}
+.bookLink{
+    text-decoration: none;
+    color: white !important;
+}
+.likeIcon{
+    width: 10%;
+}
+.edit{
+    bottom: 0;
+    color: yellow;
+}
+    .edit:hover{
+        color: lightskyblue;
+    }
+
+.doge{
+    width: 35%;
+    margin-top: 5%;
+    text-decoration: none;
+    color: white !important;
+    margin-bottom: 5%;
+}
+@media only screen and (max-width: 768px){
+    .thisCard{
+        height: 320px;
+        margin-right: 0;
+    }
+    .title{
+        margin-top: 12px;
+    }
+}

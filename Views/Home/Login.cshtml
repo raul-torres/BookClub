@@ -1,0 +1,34 @@
+@model LoginUser
+
+<head>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Login.css">
+</head>
+
+<h1 class="playfair create text-center">Welcome Back</h1>
+    <p class="playfair login text-center">
+        <a href="/register" class="login">or Create an Account</a>
+    <div class="row fauna">
+        @* Creating space for left *@
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 jumbotron playfair">
+            <form action="/access" method="post">
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="LUser"></span>
+                    <input placeholder="User Name" class="thisInput form-control" asp-for="LUser" value="raul123">
+                </div>
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="LPassword"></span>
+                    <input placeholder="Password" class="thisInput form-control" asp-for="LPassword" value="Q@123456789">
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Log In" class="btn btn-outline-primary"> 
+                </div>
+            </form>
+        </div>
+        
+        @* Creating space for right *@
+        <div class="col-md-3"></div>
+    </div>
+</div>

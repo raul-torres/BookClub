@@ -1,0 +1,69 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../img/home.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+.container{
+    color: white;
+}
+.navbar{
+    margin-bottom: 5%;
+}
+.bookCover{
+    width: 80%;
+}
+.user{
+    margin-top: 5%;
+}
+.reghr{
+    background-color: gray;
+    height: 0.5px;
+}
+.topRow{
+    margin-bottom: 3%;
+}
+.botRow{
+    margin-top: 3%;
+}
+.CMMNTS{
+    border-left: 1px solid rgb(68, 68, 68);
+}
+.inline{
+    display: inline-block;
+}
+.CDate{
+    font-style: italic;
+}
+.cHR{
+    background-color: rgb(87, 86, 86);
+}
+.likedBy{
+    margin-top: 10%;
+}
+.CDel{
+    margin-bottom: 2%;
+}
+.delete{
+    position: absolute;
+    right: 0;
+    color: rgb(241, 79, 79) !important;
+    background-color: transparent !important;
+    border: none;
+}
+@media only screen and (max-width: 768px){
+    .bookCover{
+        width: 45%;
+        margin-bottom: 5%;
+    }
+}
+@media only screen and (max-width: 600px){
+    .CMMNTS{
+        border-left: none;
+    }
+    .E_Delete{
+        margin-top: 3%;
+    }
+}

@@ -1,0 +1,143 @@
+@model Comment
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/ThisBook.css">
+    <link rel="stylesheet" href="~/css/Nav.css">
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/addbook">Add Book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/account">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      View information for this book.
+    </span>
+  </div>
+</nav>
+
+<div class="playfair row topRow">
+    <div class="col-md-1"></div>
+    <div class="text-center col-md-3">
+        <img src="~/img/cover.jpg" alt="Book Cover" class="bookCover">
+        <p class="user">Recommended by, @ViewBag.Book.Creator.FirstName @ViewBag.Book.Creator.LastName</p>
+
+        @{
+          if(ViewBag.Book.CreatorId != ViewBag.CurrentUser)
+          {
+            bool BookLk = false;
+            foreach(var u in @ViewBag.Book.LikedBy)
+            {
+              if(u.User.UserId == ViewBag.CurrentUser)
+              {
+                BookLk = true;
+              }
+            }
+            if(BookLk == true)
+            {
+              @* <a href="/thisbook_unlike/@ViewBag.Book.BookId" class="btn btn-outline-info">Unlike</a> *@
+              <form action="/thisbook_unlike/@ViewBag.Book.BookId" method="post">
+                <input type="submit" value="Unlike" class="btn btn-outline-info">
+              </form>
+            } else if(BookLk == false) {
+              @* <a href="/thisbook_like/@ViewBag.Book.BookId" class="btn btn-outline-info">Like</a> *@
+              <form action="/thisbook_like/@ViewBag.Book.BookId" method="post">
+                <input type="submit" value="Like" class="btn btn-outline-info">
+              </form>
+            }
+          } else{
+            <p class="inline">
+              <a href="/editbook/@ViewBag.Book.BookId" class="btn btn-outline-warning">Edit</a>
+            </p>
+            <form action="/deletebook/@ViewBag.Book.BookId" method="post" class="inline">
+              <input type="submit" value="Delete" class="btn btn-outline-danger">
+            </form>
+          }
+        }
+
+    </div>
+    <div class="col-md-8 text-center">
+        <h1>@ViewBag.Book.Name</h1>
+        <br>
+        <br>
+        <h2>By, @ViewBag.Book.Author</h2>
+        <br>
+        <br>
+        <p>"@ViewBag.Book.Notes"</p>
+    </div>
+</div>
+
+<hr class="reghr">
+
+<div class="playfair row botRow">
+  <div class="col-md-1"></div>  
+  <div class="col-md-4 text-center">
+    <h4>@ViewBag.Book.LikedBy.Count Likes</h4>
+    @{
+        if(ViewBag.Book.LikedBy.Count > 0){
+            <p class="likedBy">This book has been liked by,</p> 
+            @foreach(var u in ViewBag.Book.LikedBy)
+            {
+                <p>• @u.User.FirstName @u.User.LastName</p>
+            }
+        }
+    }
+  <hr class="mobile reghr">
+  </div>
+  <div class="col-md-7 CMMNTS">
+      <h4 class="text-center">Comments</h4>
+      
+      <div class="mainBody text-center ">
+          <form action="/newcomment/@ViewBag.Book.BookId" method="post">
+              <div class="form-group">
+                  <span class="error1" asp-validation-for="Content"></span>
+                  <textarea asp-for="Content" cols="15" rows="5" placeholder="Add Comment" class="thisInput form-control"></textarea>
+                  <span class="atleast">Cannot exceed more than 300 characters.</span>
+                  <br>
+                  <input type="submit" value="Add" class="btn btn-outline-primary">
+              </div>
+          </form>
+      </div>
+
+      <div class="allComments">
+            <hr class="cHR">
+        @{
+          foreach(Comment z in ViewBag.Book.AllComments)
+          {
+            <div class="thisComment">
+              <p class="inline CCreator">@z.Creator.FirstName @z.Creator.LastName - </p>
+              <p class="inline CDate">@z.CreatedAt.ToShortDateString()</p>
+              <p class="text-center">@z.Content</p>
+              @if(z.CreatorId == ViewBag.CurrentUser)
+              {
+                <form action="/commentdelete/@z.CommentId/@ViewBag.Book.BookId" method="post" class="inline CDel">
+                  <input type="submit" value="Delete" class="delete btn btn-outline-danger">
+                </form>
+              }
+            </div>
+            <hr class="cHR">
+          }
+        }
+      </div>
+  </div>
+</div>

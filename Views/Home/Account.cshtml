@@ -1,0 +1,84 @@
+@model User
+
+<head>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Nav.css">
+    <link rel="stylesheet" href="~/css/Account.css">
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/addbook">Add Book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/account">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Here is your account info.
+    </span>
+  </div>
+</nav>
+
+<div class="jumbotron playfair">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="label">First Name</label>
+            <p class="infoPiece">@Model.FirstName</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-right">
+                <a href="/updatefirstname" class="update">Update first name</a>
+            </p>
+        </div>
+    </div>
+    <hr class="reghr">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="label">Last Name</label>
+            <p class="infoPiece">@Model.LastName</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-right">
+                <a href="/updatelastname" class="update">Update last name</a>
+            </p>
+        </div>
+    </div>
+    <hr class="reghr">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="label">User Name</label>
+            <p class="infoPiece">@Model.UserName</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-right">
+                <a href="/updateusername" class="update">Update username</a>
+            </p>
+        </div>
+    </div>
+    <hr class="reghr">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="label">Password</label>
+            <p class="infoPiece">********</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-right">
+                <a href="/updatepassword" class="update">Change password</a>
+            </p>
+        </div>
+    </div>
+</div>
+

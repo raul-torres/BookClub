@@ -1,0 +1,29 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url('../img/account.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+.container{
+    color: white;
+}
+.label{
+    text-decoration: none !important;
+    font-size: large;
+}
+.jumbotron{
+    margin-top: 5%;
+}
+.update{
+    color: rgb(77, 185, 221);
+    transition: 0.5s;
+}
+.reghr{
+    background-color: rgb(243, 89, 89);
+}
+.btn{
+    color: white !important;
+}

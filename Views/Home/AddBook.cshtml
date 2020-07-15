@@ -1,0 +1,62 @@
+@model Book
+
+<head>
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Nav.css">
+    <link rel="stylesheet" href="~/css/AddBook.css">
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/addbook">Add Book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/account">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Let's recommend a book.
+    </span>
+  </div>
+</nav>
+
+<div class="mainBody">
+    <div class="jumbotron">
+        <div class="row playfair">
+            <div class="col-md-6">
+                <form action="/newbook" method="post">
+                    <div class="form-group">
+                        <span class="error1" asp-validation-for="Name"></span>
+                        <input placeholder="Book Title" class="thisInput form-control" asp-for="Name">
+                    </div>
+                    <div class="form-group">
+                        <span class="error1" asp-validation-for="Author"></span>
+                        <input placeholder="Author" class="thisInput form-control" asp-for="Author">
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="Notes"></span>
+                    <textarea asp-for="Notes" cols="30" rows="10" class="thisInput form-control" placeholder="Notes (optional)"></textarea>
+                    <span class="atleast">Cannot exceed 320 characters</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <input type="submit" value="Add Book" class="btn btn-outline-primary"> 
+        </div>
+                </form>
+    </div>
+</div>

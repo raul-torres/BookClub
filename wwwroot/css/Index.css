@@ -1,0 +1,24 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url('../img/lib.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+.container{
+    color: white;
+}
+.title{
+    margin-top: 30%;
+}
+.start{
+    text-decoration: none;
+    color: lightblue;
+    transition: 0.8s;
+    font-size: large;
+}
+.start:hover{
+    font-size: x-large;
+    color: lightgreen;
+}

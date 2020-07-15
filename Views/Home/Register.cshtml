@@ -1,0 +1,50 @@
+@model User
+
+<head>
+    <link rel="stylesheet" href="~/css/Register.css">
+</head>
+
+<div class="mainBody">
+
+    <h1 class="playfair create text-center">Let's Create your Account</h1>
+    <p class="playfair login text-center">
+        <a href="/login" class="login">or Sign In</a>
+    <div class="row fauna">
+        @* Creating space for left *@
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 jumbotron playfair">
+            <form action="/accountcreator" method="post">
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="FirstName"></span>
+                    <input placeholder="First Name" class="thisInput form-control" asp-for="FirstName">
+                </div>
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="LastName"></span>
+                    <input placeholder="Last Name" class="thisInput form-control" asp-for="LastName">
+                </div>
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="UserName"></span>
+                    <input placeholder="User Name" class="thisInput form-control" asp-for="UserName">
+                </div>
+                <div class="form-group">
+                    
+                    <span class="error1" asp-validation-for="Password"></span>
+                    <input placeholder="Password" class="thisInput form-control" asp-for="Password">
+                    <span class="atleast">Atleast 5 characters long</span>
+                    <span class="atleast">Atleast 1 letter and 1 number</span>
+                </div>
+                <div class="form-group">
+                    <span class="error1" asp-validation-for="ConfirmedPassword"></span>
+                    <input placeholder="Confirm Password" class="thisInput form-control" asp-for="ConfirmedPassword">
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Sign Up!" class="btn btn-outline-primary"> 
+                </div>
+            </form>
+        </div>
+        
+        @* Creating space for right *@
+        <div class="col-md-3"></div>
+    </div>
+</div>

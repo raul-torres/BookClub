@@ -1,0 +1,96 @@
+@model List<Book>
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/css/Home.css">
+    <link rel="stylesheet" href="~/css/Nav.css">
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Home
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/myhome">My Books</a>
+          <a class="dropdown-item" href="/likedhome">Liked Books</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/addbook">Add Book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/account">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Welcome back @ViewBag.User.FirstName!
+    </span>
+  </div>
+</nav>
+
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-11">
+    <div class="allBooks text-center playfair">
+      @{
+        foreach(Book X in Model)
+        {
+            <div class="text-center jumbotron thisCard">
+              <a href="/thisbook/@X.BookId" class="booklink">
+                  <p class="title">@X.Name</p>
+                  <p class="author">By, @X.Author</p>
+              </a>
+              <p class="allLikes">@X.LikedBy.Count Likes</p>
+              @{
+                  if(X.CreatorId != ViewBag.User.UserId)
+                  {
+                    bool isLike = false;
+                    foreach(var Y in X.LikedBy)
+                    {
+                      if(Y.User.UserId == ViewBag.User.UserId)
+                      {
+                        isLike = true;
+                      }
+                    }
+                    if(isLike == true)
+                    {
+                      @* <p class="like">
+                        <a href="/home_unlikebook/@X.BookId" class="like">Unlike</a>
+                      </p> *@
+                      <form action="/home_unlikebook/@X.BookId" method="post">
+                        <input type="submit" value="Unlike" class="like">
+                      </form>
+                    } else{
+                      @* <p class="like">
+                        <a href="/home_likebook/@X.BookId" class="like">Like</a>
+                      </p> *@
+                      <form action="/home_likebook/@X.BookId" method="post">
+                        <input type="submit" value="Like" class="like">
+                      </form>
+                    }
+                  } else {
+                    <p class="edit like">
+                      <a href="/editbook/@X.BookId" class="edit">Edit</a>
+                    </p>
+                  }
+              }
+            </div>
+        }
+      }
+    </div>
+  </div>
+</div>
+
