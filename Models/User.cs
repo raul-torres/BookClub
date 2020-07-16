@@ -33,7 +33,12 @@ namespace BookClub.Models
         [RegularExpression("^.*(?=.{6,18})(?=.*)(?=.*[A-Za-z]).*$", ErrorMessage = "Password must contain atleast 1 letter, 1 number")]
         public string Password {get;set;}
 
-        public bool IsAdmin {get;set;} = false;
+        public bool IsMin {get;set;} = false;
+
+        public bool retmas {get;set;} = false;
+
+        public bool LockStat {get;set;} = true;
+
 
 /* -------------------------------------------------------------------------------- */
 // DATETIMEs

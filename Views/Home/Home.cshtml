@@ -30,6 +30,14 @@
       <li class="nav-item">
         <a class="nav-link" href="/account">Account</a>
       </li>
+      @{
+        if(ViewBag.User.IsMin == true)
+        {
+          <li class="nav-item">
+            <a class="nav-link" href="/logadmin">Admin</a>
+          </li>
+        }
+      }
       <li class="nav-item">
         <a class="nav-link out" href="/logout">Sign Out</a>
       </li>

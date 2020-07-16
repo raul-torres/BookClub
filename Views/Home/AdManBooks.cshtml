@@ -1,0 +1,74 @@
+@model List<Book>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/css/Nav.css">
+    <link rel="stylesheet" href="~/css/Admin.css">
+
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <form action="/adbacklogs" method="post">
+            <input type="submit" class="formLink nav-link" value="User Logs">
+        </form>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled active" href="#">Manage Books</a>
+      </li>
+      <li class="nav-item">
+        <form action="/admanaccounts" method="post">
+            <input type="submit" class="formLink nav-link" value="Manage Accounts">
+        </form>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Back to Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      ADMIN CONTROLS
+    </span>
+  </div>
+</nav>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Reccomended by</th>
+      <th scope="col">Likes</th>
+      <th scope="col">Comments</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      foreach(var B in Model)
+      {
+        <tr>
+          <th scope="row">@B.Name</th>
+          <td>@B.Author</td>
+          <td>@B.Creator.FirstName @B.Creator.LastName</td>
+          <td>@B.LikedBy.Count</td>
+          <td>@B.AllComments.Count</td>
+          <td>
+            <form action="/adremovebook/@B.BookId" method="post">
+              <input type="submit" value="Remove" class="btn btn-outline-danger">
+            </form>
+          </td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>

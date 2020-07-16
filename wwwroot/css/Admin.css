@@ -1,0 +1,53 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url('../img/admin.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+.jumbotron{
+    margin-top: 10%;
+    overflow: auto;
+}
+.scroll{
+    height: 400px;
+    overflow-y: scroll;
+}
+.hello{
+    margin-bottom: 13%;
+}
+.formLink{
+    background-color: transparent;
+    border: none;
+}
+.navbar{
+    margin-bottom: 10%;
+}
+.table{
+    background-color: rgba(0, 0, 0, 0.808) !important;
+}
+.current{
+    color: lightgreen;
+}
+.not{
+    color: yellow;
+}
+.lock{
+    color: lightcoral;
+    text-decoration: underline;
+}
+.thisForm{
+    margin-bottom: 7%;
+}
+.inline{
+    display: inline-block;
+}
+.reghr{
+    background-color: gray;
+    height: 0.5px;
+}
+.info{
+    margin-bottom: 4%;
+}

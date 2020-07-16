@@ -122,7 +122,7 @@
       <div class="allComments">
             <hr class="cHR">
         @{
-          foreach(Comment z in ViewBag.Book.AllComments)
+          foreach(var z in ViewBag.Book.AllComments)
           {
             <div class="thisComment">
               <p class="inline CCreator">@z.Creator.FirstName @z.Creator.LastName - </p>

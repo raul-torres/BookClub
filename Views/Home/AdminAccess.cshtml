@@ -1,0 +1,57 @@
+@model List<Log>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/css/Nav.css">
+    <link rel="stylesheet" href="~/css/Register.css">
+    <link rel="stylesheet" href="~/css/Admin.css">
+
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link disabled active" href="#">User Logs</a>
+      </li>
+      <li class="nav-item">
+        <form action="/admanbooks" method="post">
+            <input type="submit" class="formLink nav-link" value="Manage Books">
+        </form>
+      </li>
+      <li class="nav-item">
+        <form action="/admanaccounts" method="post">
+            <input type="submit" class="formLink nav-link" value="Manage Accounts">
+        </form>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Back to Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      ADMIN CONTROLS
+    </span>
+  </div>
+</nav>
+
+<div class="jumbotron scroll">
+  <p class="atleast">Ordered by Newest Logs</p>
+  @{
+    foreach(var L in Model)
+    {
+      <div class="thisLog">
+        <p class="info">@L.Info</p>
+        <p class="inline creator">@L.Creator.FirstName @L.Creator.LastName -</p>
+        <p class="inline created">@L.CreatedAt</p>
+      </div>
+      <hr class="reghr">
+    }
+  }
+</div>

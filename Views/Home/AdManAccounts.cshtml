@@ -1,0 +1,111 @@
+@model List<User>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/css/Nav.css">
+    <link rel="stylesheet" href="~/css/Admin.css">
+
+</head>
+
+<nav class="navbar playfair navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">The Book Club</a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <form action="/adbacklogs" method="post">
+                <input type="submit" class="formLink nav-link" value="User Logs">
+            </form>
+        </li>
+      <li class="nav-item">
+        <form action="/admanbooks" method="post">
+            <input type="submit" class="formLink nav-link" value="Manage Books">
+        </form>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled active" href="#">Manage Accounts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Back to Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link out" href="/logout">Sign Out</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      ADMIN CONTROLS
+    </span>
+  </div>
+</nav>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Admin Status</th>
+      <th scope="col">Created Books</th>
+      <th scope="col">Books Liked</th>
+      <th scope="col">All Comments</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      foreach(var U in Model)
+      {
+        if(U.retmas == true)
+        {
+            break;
+        }
+        <tr>
+          <th scope="row">@U.FirstName</th>
+          <td>@U.LastName</td>
+          <td>@U.UserName</td>
+          @if(U.LockStat == true)
+          {
+            <td class="lock">ACCOUNT LOCKED</td>
+          } else if(U.IsMin == true)
+          {
+            <td class="current">CURRENT ADMIN</td>
+          } else {
+            <td class="not">Regular User</td>
+          }
+          <td>@U.CreatedBooks.Count</td>
+          <td>@U.BooksLiked.Count</td>
+          <td>@U.AllComments.Count</td>
+          <td>
+              @if(U.LockStat == true)
+              {
+                <form action="/adunlockacc/@U.UserId" method="post" class="thisForm">
+                    <input type="submit" value="Unlock Account" class="btn btn-outline-success">
+                </form>
+              } else if(U.LockStat == false){
+                <form action="/adlockacc/@U.UserId" method="post" class="thisForm">
+                    <input type="submit" value="Lock Account" class="btn btn-outline-secondary">
+                </form>
+              }
+              <form action="/adremoveacc/@U.UserId" method="post" class="thisForm">
+                <input type="submit" value="Remove Account" class="btn btn-outline-danger">
+              </form>
+              @if(U.IsMin == false)
+              {
+                <form action="/adcreatead/@U.UserId" method="post">
+                    <input type="submit" value="Upgrade to Admin" class="btn btn-outline-warning">
+                </form>
+              } else {
+                <form action="/adremovead/@U.UserId" method="post">
+                    <input type="submit" value="Downgrade Admin" class="btn btn-outline-warning">
+                </form>
+              }
+          </td>
+
+        </tr>
+      }
+    }
+  </tbody>
+</table>

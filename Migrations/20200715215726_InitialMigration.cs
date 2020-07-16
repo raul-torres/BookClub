@@ -18,7 +18,9 @@ namespace BookClub.Migrations
                     LastName = table.Column<string>(maxLength: 25, nullable: false),
                     UserName = table.Column<string>(maxLength: 25, nullable: false),
                     Password = table.Column<string>(type: "LONGTEXT", nullable: false),
-                    IsAdmin = table.Column<bool>(nullable: false),
+                    IsMin = table.Column<bool>(nullable: false),
+                    retmas = table.Column<bool>(nullable: false),
+                    LockStat = table.Column<bool>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
@@ -45,6 +47,28 @@ namespace BookClub.Migrations
                     table.PrimaryKey("PK_Books", x => x.BookId);
                     table.ForeignKey(
                         name: "FK_Books_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    LogId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Info = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    CreatorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.LogId);
+                    table.ForeignKey(
+                        name: "FK_Logs_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -124,6 +148,11 @@ namespace BookClub.Migrations
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Logs_CreatorId",
+                table: "Logs",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserBookRelations_BookId",
                 table: "UserBookRelations",
                 column: "BookId");
@@ -138,6 +167,9 @@ namespace BookClub.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Logs");
 
             migrationBuilder.DropTable(
                 name: "UserBookRelations");

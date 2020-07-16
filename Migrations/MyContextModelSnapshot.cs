@@ -72,6 +72,26 @@ namespace BookClub.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("BookClub.Models.Log", b =>
+                {
+                    b.Property<int>("LogId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<string>("Info");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("LogId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("BookClub.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -83,11 +103,13 @@ namespace BookClub.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.Property<bool>("IsAdmin");
+                    b.Property<bool>("IsMin");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(25);
+
+                    b.Property<bool>("LockStat");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -99,6 +121,8 @@ namespace BookClub.Migrations
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(25);
+
+                    b.Property<bool>("retmas");
 
                     b.HasKey("UserId");
 
@@ -144,6 +168,14 @@ namespace BookClub.Migrations
 
                     b.HasOne("BookClub.Models.User", "Creator")
                         .WithMany("AllComments")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BookClub.Models.Log", b =>
+                {
+                    b.HasOne("BookClub.Models.User", "Creator")
+                        .WithMany()
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

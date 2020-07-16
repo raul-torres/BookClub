@@ -10,6 +10,7 @@ namespace BookClub.Models
         public DbSet<Book> Books {get;set;}
         public DbSet<UserBookRelation> UserBookRelations {get;set;}
         public DbSet<Comment> Comments {get;set;}
+        public DbSet<Log> Logs {get;set;}
 
      
     }
